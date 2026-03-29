@@ -1,22 +1,28 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { execSync } from 'child_process';
 
-const execAsync = promisify(exec);
+const projectRoot = '/vercel/share/v0-project';
 
-async function build() {
-  try {
-    console.log('Installing dependencies with pnpm...');
-    await execAsync('pnpm install');
+console.log('[v0] Starting build process...');
+console.log(`[v0] Project root: ${projectRoot}`);
 
-    console.log('Building VirtFusion package...');
-    await execAsync('pnpm build');
+try {
+  // Install dependencies using npm
+  console.log('[v0] Installing dependencies with npm...');
+  execSync('npm install', {
+    cwd: projectRoot,
+    stdio: 'inherit',
+  });
 
-    console.log('Build completed successfully!');
-    await execAsync('ls -la dist/');
-  } catch (error) {
-    console.error('Build failed:', error);
-    process.exit(1);
-  }
+  // Build the project with tsup
+  console.log('[v0] Building with tsup...');
+  execSync('npm run build', {
+    cwd: projectRoot,
+    stdio: 'inherit',
+  });
+
+  console.log('[v0] Build completed successfully!');
+  console.log('[v0] Deployment ready!');
+} catch (error) {
+  console.error('[v0] Build failed:', error.message);
+  process.exit(1);
 }
-
-build();
