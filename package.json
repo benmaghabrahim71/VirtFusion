@@ -37,7 +37,8 @@
     "module-alias": "^2.2.3",
     "typescript": "^5.7.2",
     "axios": "^1.7.9",
-    "url-join-ts": "^1.0.5"
+    "url-join-ts": "^1.0.5",
+    "tsup": "^8.3.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -45,9 +46,7 @@
     "@types/tcp-ping": "^0.1.6",
     "@types/node": "^22.10.1",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "tsconfig-paths": "^4.2.0"
   },
   "_moduleAliases": {
     "types": "./dist/types",
